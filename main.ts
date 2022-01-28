@@ -13,8 +13,6 @@ input.onGesture(Gesture.FreeFall, function () {
     basic.clearScreen()
     basic.showString("How did you get here")
     basic.clearScreen()
-    basic.showString("I think you broke me")
-    basic.clearScreen()
     basic.showString("Turn me off then turn me back on")
     basic.clearScreen()
     basic.showString("Go")
@@ -55,34 +53,8 @@ input.onGesture(Gesture.FreeFall, function () {
     basic.clearScreen()
     basic.showString("Bruh Stop ")
     basic.clearScreen()
-    basic.showString("" + (images.createBigImage(`
-        . . . . # . . . . .
-        . . . . # . . . . .
-        . . . . # . . . . .
-        . . # # # # # . . .
-        . . # # # # # # # .
-        `)))
 })
-input.onGesture(Gesture.ScreenDown, function () {
-    basic.showString("I can't see")
-    basic.clearScreen()
-    basic.showLeds(`
-        . # . # .
-        . # . # .
-        . . . . .
-        . # # # .
-        # . . . #
-        `)
-})
-input.onSound(DetectedSound.Loud, function () {
-    basic.showString("Turn it down it is so loud")
-    basic.clearScreen()
-    basic.showString("I am studying ")
-})
-input.onButtonPressed(Button.AB, function () {
-	
-})
-input.onGesture(Gesture.Shake, function () {
+input.onGesture(Gesture.ScreenUp, function () {
     basic.showString("Want to play a game")
     basic.clearScreen()
     basic.showString("Ok")
@@ -100,13 +72,12 @@ input.onGesture(Gesture.Shake, function () {
     basic.showString("Pick a numbers ")
     basic.clearScreen()
     game.addLife(2)
-    basic.showString("Chose one or two")
-    basic.clearScreen()
     basic.showString("" + (Math.randomBoolean()))
+    basic.clearScreen()
+    basic.showString("")
     if (true) {
         basic.showString("You win")
         game.addScore(1)
-        basic.clearScreen()
     } else {
         basic.showString("You lose")
         game.removeLife(1)
@@ -130,6 +101,46 @@ input.onGesture(Gesture.Shake, function () {
     }
     basic.showString("GG")
     game.gameOver()
+})
+input.onGesture(Gesture.ScreenDown, function () {
+    basic.showString("I can't see")
+    basic.clearScreen()
+    basic.showLeds(`
+        . # . # .
+        . # . # .
+        . . . . .
+        . # # # .
+        # . . . #
+        `)
+})
+input.onSound(DetectedSound.Loud, function () {
+    basic.showString("Turn it down it is so loud")
+    basic.clearScreen()
+    basic.showString("I am studying ")
+})
+input.onButtonPressed(Button.AB, function () {
+    basic.showString("Can't make chose")
+    basic.clearScreen()
+    basic.showString("Ok dice time")
+    basic.clearScreen()
+    basic.showString("1or2")
+    basic.showNumber(randint(1, 2))
+})
+input.onGesture(Gesture.Shake, function () {
+    basic.showIcon(IconNames.Ghost)
+    basic.showString("I am a ghost")
+    basic.showString("Don't blow me away")
+    for (let index = 0; index < 4; index++) {
+        if (true) {
+            Col = randint(0, 4)
+            Row = randint(0, 4)
+        }
+        if (led.point(Col, Row)) {
+            led.unplot(Col, Row)
+            led.plot(Col + 1, Row)
+        }
+    }
+    basic.showString(".. / -.-. .- -. / .----. - / .... . .-.. .--. / .. / .. -. / .... . .-. . / - --- --- / --..-- .. / -.-. .- -. / --- -. .-.. -.-- / - .- .-.. -.- / --- -. / - .... . / .. -. - . .-. -. . - / .. / -.-. .- -. .----. - / --. . - / --- ..- -")
 })
 input.onGesture(Gesture.LogoDown, function () {
     basic.showString("You want meme")
@@ -156,6 +167,8 @@ input.onGesture(Gesture.LogoDown, function () {
     basic.clearScreen()
     basic.showString("" + (images.iconImage(IconNames.Happy)))
 })
+let Row = 0
+let Col = 0
 basic.showString("Hello!")
 basic.showLeds(`
     . . . . .
@@ -164,6 +177,8 @@ basic.showLeds(`
     . # . # .
     . . # . .
     `)
+basic.pause(100)
+basic.showIcon(IconNames.Heart)
 basic.clearScreen()
 music.ringTone(294)
 music.ringTone(330)
@@ -173,6 +188,3 @@ music.setVolume(255)
 basic.clearScreen()
 basic.showString("Shake the mircobit to play a game")
 basic.clearScreen()
-basic.forever(function () {
-	
-})
